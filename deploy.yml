@@ -39,3 +39,9 @@ spec:
         ports:
         - containerPort: 3001
           protocol: TCP
+        env:
+        - name: SL_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: sl-api-token
+              key: secret  
