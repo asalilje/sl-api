@@ -44,4 +44,4 @@ spec:
           valueFrom:
             secretKeyRef:
               name: sl-api-token
-              key: secret  
+              key: secret.txt  
