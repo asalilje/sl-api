@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sl-api
+  labels:
+    app: sl-api
+spec:
+  type: NodePort
+  ports:
+    - port: 3001
+      protocol: TCP
+      nodePort: 31119
+  selector:
+    app: sl-api
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sl-api
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: sl-api
+  template:
+    metadata:
+      labels:
+        app: sl-api
+    spec:
+      containers:
+      - name: sl-api
+        image: asalilje/sl-api:0.0.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3001
+          protocol: TCP
