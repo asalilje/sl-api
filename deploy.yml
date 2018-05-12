@@ -45,3 +45,16 @@ spec:
             secretKeyRef:
               name: sl-api-token
               key: secret.txt  
+      - name: pi-blinkt
+        image: asalilje/pi-blinkt:0.0.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3200
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /sys
+          name: sys-tree
+      volumes:
+      - name: sys-tree
+        hostPath:
+          path: /sys              

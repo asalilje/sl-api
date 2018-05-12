@@ -29,6 +29,9 @@ namespace SLApi.Controllers
                 var url = $"http://api.sl.se/api2/realtimedeparturesV4.json?key={_token}&siteid=1275&timewindow=30";
                 using (var response = await _client.GetAsync(url))
                 {
+                    if (!response.IsSuccessStatusCode)
+                        throw new HttpRequestException($"SL API not responding, reason: {response.ReasonPhrase}");
+
                     using (var content = response.Content)
                     {
                         var data = await content.ReadAsStringAsync();
