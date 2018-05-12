@@ -27,14 +27,16 @@ spec:
   selector:
     matchLabels:
       app: sl-api
+      version: 0.0.2
   template:
     metadata:
       labels:
         app: sl-api
+        version: 0.0.2
     spec:
       containers:
       - name: sl-api
-        image: asalilje/sl-api:0.0.1
+        image: asalilje/sl-api:0.0.2
         imagePullPolicy: Always
         ports:
         - containerPort: 3001
