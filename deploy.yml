@@ -17,6 +17,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sl-api
+  labels:
+    version: 0.0.2
 spec:
   replicas: 2
   strategy:
