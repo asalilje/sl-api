@@ -26,6 +26,7 @@ namespace SLApi.Controllers
         {
             try
             {
+                LedBlink();
                 var url = $"http://api.sl.se/api2/realtimedeparturesV4.json?key={_token}&siteid=1275&timewindow=30";
                 using (var response = await _client.GetAsync(url))
                 {
@@ -46,6 +47,11 @@ namespace SLApi.Controllers
             }
         }
 
+        private void LedBlink()
+        {
+            var url = "http://localhost:3200/on";
+            _client.GetAsync(url);
+        }
     }
 
 }
